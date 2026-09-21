@@ -3,8 +3,8 @@
  *
  * Answers the two questions Phase 2a/2b ask: did the Cursor rules reach the
  * model as runtime context, and did the skill catalog carry the Cursor skills.
- * `node verify-session.mjs [session.jsonl.zstd]` — defaults to the newest
- * session under `$DSH_HOME/sessions`.
+ * `node verify-session.mjs [session log path]` — defaults to the newest session
+ * log under `$DSH_HOME/sessions`.
  */
 
 import { readFile } from 'node:fs/promises'
@@ -13,7 +13,14 @@ import { homedir } from 'node:os'
 import { join } from 'node:path'
 import { zstdDecompressSync } from 'node:zlib'
 
-/** Newest `session.jsonl.zstd` under a sessions root, or the given path. */
+/**
+ * Newest session log under a sessions root, or the given path.
+ *
+ * The harness names a log after its format generation — `session.jsonl.zstd`
+ * for the pre-versioned generations, `session.v3.jsonl.zstd` for the current
+ * one — and keeps every generation on disk rather than overwriting, so
+ * discovery takes the newest matching file instead of one fixed name.
+ */
 function resolveSession(argument) {
   if (argument !== undefined) return argument
   const root = join(process.env.DSH_HOME ?? join(homedir(), '.dsh'), 'sessions')
@@ -23,11 +30,15 @@ function resolveSession(argument) {
     const workspaceDir = join(root, workspace.name)
     for (const session of readdirSync(workspaceDir, { withFileTypes: true })) {
       if (!session.isDirectory()) continue
-      const file = join(workspaceDir, session.name, 'session.jsonl.zstd')
-      try {
-        found.push({ file, mtime: statSync(file).mtimeMs })
-      } catch {
-        // A session directory without a log yet is not a candidate.
+      const sessionDir = join(workspaceDir, session.name)
+      for (const entry of readdirSync(sessionDir, { withFileTypes: true })) {
+        if (!entry.isFile() || !entry.name.startsWith('session') || !entry.name.endsWith('.jsonl.zstd')) continue
+        const file = join(sessionDir, entry.name)
+        try {
+          found.push({ file, mtime: statSync(file).mtimeMs })
+        } catch {
+          // A log that vanished between listing and stat is not a candidate.
+        }
       }
     }
   }

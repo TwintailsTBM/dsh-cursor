@@ -113,7 +113,7 @@ node test.mjs            # 14 个单测：解析、发现、作用域、预算�
 node test-delivery.mjs   # 4 个投递层测试：每行注册了什么、返回了什么
 node smoke.mjs [目录]     # 某个真实工作区里一次会话会注入多少
 node extreme.mjs         # 病态目录：5MB 单文件、500 个文件、NUL 字节
-node verify-session.mjs [session.jsonl.zstd] [grep]
+node verify-session.mjs [日志路径] [grep]
                          # 解会话日志，报上下文段与技能目录
 ```
 

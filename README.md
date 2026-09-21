@@ -131,7 +131,7 @@ node test.mjs            # 14 unit tests: parsing, discovery, scope, budget, odd
 node test-delivery.mjs   # 4 delivery tests: what each row registers and returns
 node smoke.mjs [dir]     # what one session in a real workspace would inject
 node extreme.mjs         # pathological rules directories: 5 MB file, 500 files, NUL bytes
-node verify-session.mjs [session.jsonl.zstd] [grep]
+node verify-session.mjs [log path] [grep]
                          # decode a session log and report the context sections and skill catalog
 ```
 
