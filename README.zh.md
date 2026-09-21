@@ -9,8 +9,14 @@
 配置的工作区，在 `dsh` 下行为一致。
 
 ```sh
-dsh plugin --profile web add github:<owner>/dsh-cursor
+dsh plugin --profile web add github:TwintailsTBM/dsh-cursor
 dsh --profile web --dump-config   # 两行都在、exit 0
+```
+
+也可以从本地目录安装，改代码不用重装、重启即生效：
+
+```sh
+dsh plugin --profile web add /path/to/dsh-cursor
 ```
 
 ## 挂了什么

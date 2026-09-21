@@ -9,8 +9,14 @@ tree-external plugin: one package, two loader rows, no dependencies, no build st
 catalog — so a workspace that already carries Cursor configuration behaves the same way under `dsh`.
 
 ```sh
-dsh plugin --profile web add github:<owner>/dsh-cursor
+dsh plugin --profile web add github:TwintailsTBM/dsh-cursor
 dsh --profile web --dump-config   # both rows present, exit 0
+```
+
+From a local checkout instead, so edits stay live without reinstalling:
+
+```sh
+dsh plugin --profile web add /path/to/dsh-cursor
 ```
 
 ## What it mounts
