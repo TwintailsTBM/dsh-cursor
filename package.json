@@ -3,6 +3,23 @@
   "version": "0.1.0",
   "description": "Cursor rules and skills for DeepSeek Harness: .cursor/rules as dynamic model context, .cursor/skills as a skill provider",
   "license": "MIT",
+  "author": "TwintailsTBM",
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "deepseek-harness",
+    "cursor",
+    "rules",
+    "skills"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TwintailsTBM/dsh-cursor.git"
+  },
+  "homepage": "https://github.com/TwintailsTBM/dsh-cursor#readme",
+  "bugs": {
+    "url": "https://github.com/TwintailsTBM/dsh-cursor/issues"
+  },
   "type": "module",
   "main": "./rules.js",
   "exports": {
@@ -16,7 +33,8 @@
     "rules.js",
     "skills.js",
     "cordis.patch.yml",
-    "README.md"
+    "README.md",
+    "README.zh.md"
   ],
   "scripts": {
     "test": "node --test"
