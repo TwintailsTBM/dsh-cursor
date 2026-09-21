@@ -1,5 +1,7 @@
 # dsh-cursor
 
+[English](README.md) | 中文
+
 把 [Cursor](https://cursor.com) 的规则与技能接进 [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) 的
 树外插件：一个包、两行、零依赖、零构建。
 

@@ -1,5 +1,7 @@
 # dsh-cursor
 
+English | [中文](README.zh.md)
+
 Cursor rules and skills for [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness), as a
 tree-external plugin: one package, two loader rows, no dependencies, no build step.
 
