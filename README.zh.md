@@ -78,7 +78,7 @@ dsh plugin --profile web add /path/to/dsh-cursor
 ## 已知限制
 
 - **不能与第二个 Cursor provider 同时挂载。** 技能注册表禁止 provider 重名，重名会让整棵插件树加载失败、宿主无法启动，
-  所以本插件注册为 `dsh-cursor`。若存在自称 `cursor` 的内置 provider，必须在本插件启用期间禁用它。
+  所以本插件注册为 `dsh-cursor`。
 - 规则与 `AGENTS.md` 是**独立来源**：不共享字节预算、不做跨源去重、不属于指令链。Cursor 规则排在 `AGENTS.md`
   消息之后（那是 driver 对 runtime context 的固有顺序）。
 - 若另有机制注入同一批规则，模型会收到两份：本插件不做跨源去重。
@@ -89,8 +89,10 @@ dsh plugin --profile web add /path/to/dsh-cursor
 
 ## 兼容性
 
-构建与验证针对 DeepSeek Harness `0.1.2-alpha.1`。插件只依赖三个公开接缝：`system-prompt/assemble` 装配 waterfall、
-`ctx.skills.registerProvider`、以及 `dsh.bundle.patch` 清单。它不从 `@deepseek-ai/*` 导入任何东西，因此没有 peer 要求。
+构建与验证针对 DeepSeek Harness `0.1.6-alpha.2`：真实会话中收到了用户级 `~/.cursor/rules` 的规则、并把
+`~/.cursor/skills` 的条目编入技能目录，而 frontmatter 里带 Cursor 的 `disable-model-invocation` 的技能不会进入模型的技能目录。
+插件依赖这些公开接缝：`system-prompt/assemble` 装配 waterfall、`ctx.skills.registerProvider`、`agent/pre-step` 与
+`fs/observed` 事件、以及 `dsh.bundle.patch` 清单。它不从 `@deepseek-ai/*` 导入任何东西，因此没有 peer 要求。
 
 ## 开发
 

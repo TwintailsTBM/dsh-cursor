@@ -90,8 +90,7 @@ skill file changes.
 
 - **No second Cursor provider may be mounted alongside this one.** The skill registry rejects a
   duplicate provider name and fails the entire plugin tree at boot, so this plugin registers as
-  `dsh-cursor`. An in-source Cursor provider that also calls itself `cursor` must be disabled while this
-  one is enabled, or the host will not start.
+  `dsh-cursor`.
 - Rules are a **separate source** from `AGENTS.md`: they do not share its byte budget, are not
   deduplicated against it, and do not take part in its instruction chain. Cursor rules land after the
   `AGENTS.md` message, which is the driver's own ordering for runtime context.
@@ -106,9 +105,12 @@ skill file changes.
 
 ## Compatibility
 
-Built and verified against DeepSeek Harness `0.1.2-alpha.1`. The plugin depends on three public seams:
-the `system-prompt/assemble` waterfall, `ctx.skills.registerProvider`, and the `dsh.bundle.patch`
-manifest. It imports nothing from `@deepseek-ai/*`, so it carries no peer requirement.
+Built and verified against DeepSeek Harness `0.1.6-alpha.2`: a live session received the user-global
+`~/.cursor/rules` files and catalogued the `~/.cursor/skills` entries, while a skill whose frontmatter
+sets Cursor's `disable-model-invocation` stayed out of the model catalog. The plugin depends on these
+public seams: the `system-prompt/assemble` waterfall, `ctx.skills.registerProvider`, the `agent/pre-step`
+and `fs/observed` events, and the `dsh.bundle.patch` manifest. It imports nothing from `@deepseek-ai/*`,
+so it carries no peer requirement.
 
 ## Development
 
