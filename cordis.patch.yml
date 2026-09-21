@@ -1,0 +1,10 @@
+- insert:
+    - id: cursor-rules
+      name: dsh-cursor/rules
+      config:
+        enabled: true
+        maxBytes: 65536
+    - id: cursor-skills
+      name: dsh-cursor/skills
+      config:
+        enabled: true

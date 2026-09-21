@@ -1,0 +1,9 @@
+# Pre-check overlay: disable the in-source Cursor support so only the
+# dsh-cursor plugin under test is active.
+- id: agent-instructions
+  config:
+    maxBytes: 65536
+    cursorRules:
+      enabled: false
+- id: skill-cursor
+  disabled: true

@@ -1,0 +1,17 @@
+# Verification overlay: isolate the source patch, then shrink the rules budget
+# so the truncation path runs against real Cursor content.
+- id: agent-instructions
+  config:
+    maxBytes: 65536
+    cursorRules:
+      enabled: false
+- id: skill-cursor
+  disabled: true
+- id: cursor-rules
+  config:
+    enabled: true
+    maxBytes: 3000
+    includeUserRules: true
+- id: cursor-skills
+  config:
+    enabled: true

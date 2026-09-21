@@ -1,0 +1,29 @@
+{
+  "name": "dsh-cursor",
+  "version": "0.1.0",
+  "description": "Cursor rules and skills for DeepSeek Harness: .cursor/rules as dynamic model context, .cursor/skills as a skill provider",
+  "license": "MIT",
+  "type": "module",
+  "main": "./rules.js",
+  "exports": {
+    ".": "./rules.js",
+    "./rules": "./rules.js",
+    "./skills": "./skills.js",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib",
+    "rules.js",
+    "skills.js",
+    "cordis.patch.yml",
+    "README.md"
+  ],
+  "scripts": {
+    "test": "node --test"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  }
+}
