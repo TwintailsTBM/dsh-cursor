@@ -1,12 +1,5 @@
-# Verification overlay: isolate the source patch and disable BOTH plugin rows, so
-# a real boot proves the rows are switchable off.
-- id: agent-instructions
-  config:
-    maxBytes: 65536
-    cursorRules:
-      enabled: false
-- id: skill-cursor
-  disabled: true
+# Verification overlay: disable BOTH plugin rows, so a real boot proves the
+# rows are switchable off.
 - id: cursor-rules
   config:
     enabled: false
